@@ -1,0 +1,62 @@
+To run the file
+
+./ESNM <CurrentParameterValueNumber> <TotalNumberOfParameterValues> <StartOfParameterValueRange> <EndOfParameterValueRange> <Kappa> <AverageDegree> <Beta> <RecordTimeSeries?> <NumberOfGs> <TypesOfOutput> <log n> <Dimension> <VertexDistributionType> <ModelType>
+
+./ESNM_data <CurrentParameterValueNumber> <TotalNumberOfParameterValues> <StartOfParameterValueRange> <EndOfParameterValueRange> <FileNameStartsWith> <AverageDegree> <Beta> <RecordTimeSeries?> <NumberOfGs> <TypesOfOutput>
+
+<TypeOfOutput>
+u : energy density
+mu : average degree
+c : fraction of vertices in largest component
+h : average hop distance
+r : average route distance
+R: RouteFactor
+C: ClusteringCoefficient
+D: DegreeDist
+E: EdgeLengthDist
+V: Vulnerability
+P: Picture
+
+
+
+<VertexDistributionType>
+s : scatter/sprinkle
+l : lattice
+
+<ModelType>
+s : Statmech model
+o : Optimization model
+
+
+<Kappa>		<Beta>	<AverageDegree>	<ModelType> 
+--------------------------------------------------------
+0		+		-	s		Rewiring model, specific beta, range of mu
+0		-		+	s		Rewiring model, specific mu, range of beta	
+-		+		0	s		Percolation model, specific beta, range of kappa	
++		-		0	s		Percolation model, specific kappa, range of beta
+0		>n		-	s		Infinite beta, range of mu
+0					o		Optimization model (rewiring only)
+-------------------------------------------------------------------------------------
+
+
+OutputFile
+INM<ModelType>n<log n>mu<AverageDegree>D<Dimension>b<Beta>k<Kappa><VertexDistributionType>OUT<TypeOfOutput>
+
+<TotalNumberOfParameterValues> <TypesOfOutput>
+==1 				u c mu C h r R DegreeDist EdgeLengthDist Vulnerability Picture
+<10				u c mu C DegreeDist EdgeLengthDist Vulnerability  	
+>=10				u c mu C h r R
+
+
+There are 4 kinds of Network statistics
+Type I: u c mu C
+Type II: DegreeDist, EdgeLengthDist, Vulnerability
+Type III: h r R
+Type IV: Picture
+
+scaling for finite \beta: 
+beta * n^{1/D} = constant or beta = beta0 * n^{-1/D} 
+for D=2, beta = 316/sqrt(n)  
+
+
+
